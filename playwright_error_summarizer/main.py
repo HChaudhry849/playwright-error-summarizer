@@ -86,5 +86,5 @@ def main():
     except IOError:
         print("An error occurred while working with the file.")
 
-def cli():
+if __name__ == "__main__":
     main()
