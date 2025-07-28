@@ -52,8 +52,9 @@ Runs main.py
 Sends errors to OpenAI GPT
 
 Outputs summaries and fix hints in the terminal
+---
 
-**### 3. 🔑 Set Up Your OpenAI API Key **
+### 3. 🔑 Set Up Your OpenAI API Key
 Create a .env file in the root of the playwright-error-summarizer folder and add:
 
 OPENAI_API_KEY=your_openai_api_key_here
@@ -61,10 +62,14 @@ Get your API key from: OpenAI API Keys
 
 ⚠️ Important: Never commit your .env file to version control.
 
+---
+
 ### 4. 📄 Install Python Dependencies
 
 pip install -r requirements.txt
 pip install -e .
+
+---
 
 ### 5. ▶️ Run the Script
 Once your Playwright tests are complete and playwright-errors.txt has been generated, run:
