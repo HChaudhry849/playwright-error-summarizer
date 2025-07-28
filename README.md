@@ -52,6 +52,7 @@ Runs main.py
 Sends errors to OpenAI GPT
 
 Outputs summaries and fix hints in the terminal
+
 ---
 
 ### 3. 🔑 Set Up Your OpenAI API Key
