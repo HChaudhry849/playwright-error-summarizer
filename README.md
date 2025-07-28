@@ -32,6 +32,10 @@ Place the provided folder (e.g., `playwright-error-summarizer`) in the root of y
 
 ### 2. 🧪 Modify Your `package.json`
 
+Add custom script entries so you can run Playwright tests and log errors automatically. This helps you capture test output and run the summarizer with a single command.
+
+---
+
 Under the `"scripts"` section, add:
 
 ```json
@@ -39,50 +43,62 @@ Under the `"scripts"` section, add:
   "test": "powershell -Command \"npx playwright test | Tee-Object -FilePath playwright-errors.txt; Get-Content playwright-errors.txt\"",
   "logerror": "python playwright-error-summarizer/playwright_error_summarizer/main.py"
 }
-💡 npm run test:
-Runs all Playwright tests
+```
 
-Saves terminal output to playwright-errors.txt
+#### 💡 `npm run test`:
+- Runs all Playwright tests  
+- Saves terminal output to `playwright-errors.txt`  
+- Displays output in the terminal
 
-Displays output in the terminal
-
-💡 npm run logerror:
-Runs main.py
-
-Sends errors to OpenAI GPT
-
-Outputs summaries and fix hints in the terminal
+#### 💡 `npm run logerror`:
+- Runs `main.py`  
+- Sends errors to OpenAI GPT  
+- Outputs summaries and fix hints in the terminal
 
 ---
 
 ### 3. 🔑 Set Up Your OpenAI API Key
-Create a .env file in the root of the playwright-error-summarizer folder and add:
 
+Create a `.env` file in the root of the `playwright-error-summarizer` folder and add:
+
+```env
 OPENAI_API_KEY=your_openai_api_key_here
-Get your API key from: OpenAI API Keys
+```
 
-⚠️ Important: Never commit your .env file to version control.
+Get your API key from: [OpenAI API Keys](https://platform.openai.com/account/api-keys)
+
+> ⚠️ **Important:** Never commit your `.env` file to version control.
 
 ---
 
 ### 4. 📄 Install Python Dependencies
 
+```bash
 pip install -r requirements.txt
 pip install -e .
+```
 
 ---
 
 ### 5. ▶️ Run the Script
-Once your Playwright tests are complete and playwright-errors.txt has been generated, run:
 
+Once your Playwright tests are complete and `playwright-errors.txt` has been generated, run:
+
+```bash
 npm run logerror
+```
+
 This will generate and print GPT summaries of each detected error.
 
-🧪 Example Output
-GPT response:
+---
 
+## 🧪 Example Output
+
+**GPT response:**
+```
 - TimeoutError: Waiting for selector "#submit" failed.
   Hint: Check if the element appears only after a delay or under specific conditions.
 
 - AssertionError: Expected text 'Success' but got 'Error'.
   Hint: Verify that your backend is returning the expected data.
+```
